@@ -5,7 +5,7 @@ name: SAP (SilentInstaller config)
 hidden: true
 file_extensions:
   - .config
-scope: source.sapinst.process
+scope: source.process
 contexts:
   main:
-    - include: scope:source.sapinst.process
+    - include: scope:source.process

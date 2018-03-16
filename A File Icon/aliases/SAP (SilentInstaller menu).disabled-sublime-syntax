@@ -5,7 +5,7 @@ name: SAP (SilentInstaller menu)
 hidden: true
 file_extensions:
   - .menu
-scope: source.sapinst.menu
+scope: source.menu
 contexts:
   main:
-    - include: scope:source.sapinst.menu
+    - include: scope:source.menu

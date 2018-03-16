@@ -5,7 +5,7 @@ name: SAP (SilentInstaller process)
 hidden: true
 file_extensions:
   - .process
-scope: source.sapinst.process
+scope: source.process
 contexts:
   main:
-    - include: scope:source.sapinst.process
+    - include: scope:source.process

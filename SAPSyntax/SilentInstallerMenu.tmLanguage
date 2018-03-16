@@ -77,7 +77,7 @@
             <key>match</key>
             <string>#.*$</string>
             <key>name</key>
-            <string>comment.in.line.source.sapinst.menu</string>
+            <string>comment.in.line.sapinst.menu</string>
         </dict>
     </array>
     <key>scopeName</key>
