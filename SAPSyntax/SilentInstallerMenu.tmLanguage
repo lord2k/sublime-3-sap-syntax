@@ -62,22 +62,27 @@
                     <key>name</key>
                     <string>string</string>
                 </dict>
+                <key>5</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment</string>
+                </dict>
             </dict>
             <key>match</key>
             <string><![CDATA[(?x)
-^\s*([CDPQ]+)\s*,\s*(?:(\w+/))?(\S+)?(?:,(.+))?$
+^\s*([CDPQ]+)\s*,?\s*(?:(\w+[/]|\w+__))?(\S+)?\s*(?:,([\w\s()\.\-]+))?\s*(\#.+)?$
                 ]]></string>
         </dict>
         <dict>
             <key>match</key>
             <string>#.*$</string>
             <key>name</key>
-            <string>comment.in.line.source.menu</string>
+            <string>comment.in.line.source.sapinst.menu</string>
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.menu</string>
+    <string>source.sapinst.menu</string>
     <key>uuid</key>
-    <string>54267807-d0bc-4f66-b353-e844c069393a</string>
+    <string>b5146344-34a6-4697-9795-b9a92349aacb</string>
 </dict>
 </plist>
