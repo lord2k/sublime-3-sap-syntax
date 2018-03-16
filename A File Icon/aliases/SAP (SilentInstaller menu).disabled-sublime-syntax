@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SAP (SilentInstaller menu)
+hidden: true
+file_extensions:
+  - .menu
+scope: source.sapinst.menu
+contexts:
+  main:
+    - include: scope:source.sapinst.menu
