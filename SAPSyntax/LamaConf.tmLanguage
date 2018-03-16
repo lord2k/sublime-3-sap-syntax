@@ -16,7 +16,7 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>string source</string>
+                    <string>string.source.lama.conf</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -26,7 +26,7 @@
             <key>match</key>
             <string>(?&lt;=[\s:])-\w+</string>
             <key>name</key>
-            <string>variable.parameter.source.conf</string>
+            <string>variable.parameter.source.lama.conf</string>
         </dict>
         <dict>
             <key>captures</key>
@@ -34,29 +34,29 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.others.source.conf</string>
+                    <string>variable.others.source.lama.conf</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.source.conf</string>
+                    <string>variable.parameter.source.lama.conf</string>
                 </dict>
                 <key>3</key>
                 <dict>
                     <key>name</key>
-                    <string>string.source.conf</string>
+                    <string>string.source.lama.conf</string>
                 </dict>
             </dict>
             <key>match</key>
             <string>\$\[\s*([\w=\-]+):?(-\w+)?((?:\#\w+)*)\s*\]</string>
             <key>name</key>
-            <string>variables.complete.source.conf</string>
+            <string>variables.complete.source.lama.conf</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*#.*?\n</string>
             <key>name</key>
-            <string>comment.source.conf</string>
+            <string>comment.source.lama.conf</string>
         </dict>
         <dict>
             <key>match</key>
@@ -80,12 +80,12 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>string.source.conf</string>
+                    <string>string.source.lama.conf</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>comment.source.conf</string>
+                    <string>comment.source.lama.conf</string>
                 </dict>
             </dict>
             <key>name</key>
@@ -97,7 +97,7 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.source.conf</string>
+                    <string>keyword.source.lama.conf</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -107,11 +107,11 @@
             <key>match</key>
             <string>#.+$</string>
             <key>name</key>
-            <string>comment.in.line.source.conf</string>
+            <string>comment.in.line.source.lama.conf</string>
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.conf</string>
+    <string>source.lama.conf</string>
     <key>uuid</key>
     <string>54267807-d0bc-4f66-b353-e844c069393a</string>
 </dict>
