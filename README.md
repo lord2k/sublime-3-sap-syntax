@@ -1,4 +1,4 @@
-INI file Syntax Highlighting
+SAP specific file Syntax Highlighting (Lama Conf, SilentInstaller config|menu|process)
 ============================
 
 Installation
