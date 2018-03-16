@@ -1,1 +1,1 @@
-{"url": "https://github.com/clintberry/sublime-text-3-sap-syntax", "description": "SAP specific syntax highlighting for Sublime Text 3", "sublime_text": "*", "dependencies": [], "platforms": ["*"], "version": "2018.03.16.11.00.00"}
+{"url": "https://github.com/lord2k/sublime-3-sap-syntax", "description": "SAP specific syntax highlighting for Sublime Text 3", "sublime_text": "*", "dependencies": [], "platforms": ["*"], "version": "2018.03.16.11.00.00"}
