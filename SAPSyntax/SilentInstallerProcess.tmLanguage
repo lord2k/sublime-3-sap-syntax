@@ -15,7 +15,7 @@
             <key>match</key>
             <string>^#.+</string>
             <key>name</key>
-            <string>comment.line.source.process</string>
+            <string>comment.line.source.sapinst.process</string>
         </dict>
         <dict>
             <key>captures</key>
@@ -23,12 +23,12 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.control.import.source.process</string>
+                    <string>keyword.control.import.source.sapinst.process</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>entity.name.function.source.process</string>
+                    <string>entity.name.function.source.sapinst.process</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -40,12 +40,12 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.source.process</string>
+                    <string>keyword.source.sapinst.process</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>support.constant.source.process</string>
+                    <string>support.constant.source.sapinst.process</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -61,7 +61,7 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.source.process</string>
+                    <string>variable.parameter.source.sapinst.process</string>
                 </dict>
                 <key>2</key>
                 <dict>
@@ -71,62 +71,62 @@
                 <key>3</key>
                 <dict>
                     <key>name</key>
-                    <string>string.source.process</string>
+                    <string>string.source.sapinst.process</string>
                 </dict>
                 <key>4</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.source.process </string>
+                    <string>variable.source.sapinst.process </string>
                 </dict>
                 <key>5</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.source.process markup.italic</string>
+                    <string>variable.source.sapinst.process markup.italic</string>
                 </dict>
                 <key>6</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.source.process</string>
+                    <string>keyword.source.sapinst.process</string>
                 </dict>
                 <key>7</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.source.process</string>
+                    <string>variable.source.sapinst.process</string>
                 </dict>
                 <key>8</key>
                 <dict>
                     <key>name</key>
-                    <string>variables.complete.source.process</string>
+                    <string>variables.complete.source.sapinst.process</string>
                 </dict>
                 <key>9</key>
                 <dict>
                     <key>name</key>
-                    <string>support.type.source.process markup.bold</string>
+                    <string>support.type.source.sapinst.process markup.bold</string>
                 </dict>
                 <key>10</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.source.process</string>
+                    <string>variable.parameter.source.sapinst.process</string>
                 </dict>
                 <key>11</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.source.process</string>
+                    <string>variable.parameter.source.sapinst.process</string>
                 </dict>
                 <key>12</key>
                 <dict>
                     <key>name</key>
-                    <string>string.source.process</string>
+                    <string>string.source.sapinst.process</string>
                 </dict>
                 <key>13</key>
                 <dict>
                     <key>name</key>
-                    <string>string.source.process</string>
+                    <string>string.source.sapinst.process</string>
                 </dict>
                 <key>14</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.source.process</string>
+                    <string>variable.source.sapinst.process</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -154,12 +154,12 @@
             <key>match</key>
             <string>#.+$</string>
             <key>name</key>
-            <string>comment.in.line.source.process</string>
+            <string>comment.in.line.source.sapinst.process</string>
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.process</string>
+    <string>source.sapinst.process</string>
     <key>uuid</key>
-    <string>54267807-d0bc-4f66-b353-e844c069393a</string>
+    <string>43b578be-a650-4a8f-bb17-238a431697e0</string>
 </dict>
 </plist>
