@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>fileTypes</key>
+    <array>
+        <string>process</string>
+        <string>config</string>
+    </array>
+    <key>name</key>
+    <string>SilentInstaller Config | Process</string>
+    <key>patterns</key>
+    <array>
+        <dict>
+            <key>match</key>
+            <string>^#.+</string>
+            <key>name</key>
+            <string>comment.line.source.process</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>keyword.control.import.source.process</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.source.process</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string>(include)(.+)$</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>keyword.source.process</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>support.constant.source.process</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string><![CDATA[(?x)
+                (.+)\.(VERSION_CONFIG_INSTALLATION_TYPE.+)
+                ]]></string>
+            <key>name</key>
+            <string>markup.bold</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.parameter.source.process</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.other.attribute-name</string>
+                </dict>
+                <key>3</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.source.process</string>
+                </dict>
+                <key>4</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.source.process </string>
+                </dict>
+                <key>5</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.source.process markup.italic</string>
+                </dict>
+                <key>6</key>
+                <dict>
+                    <key>name</key>
+                    <string>keyword.source.process</string>
+                </dict>
+                <key>7</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.source.process</string>
+                </dict>
+                <key>8</key>
+                <dict>
+                    <key>name</key>
+                    <string>variables.complete.source.process</string>
+                </dict>
+                <key>9</key>
+                <dict>
+                    <key>name</key>
+                    <string>support.type.source.process markup.bold</string>
+                </dict>
+                <key>10</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.parameter.source.process</string>
+                </dict>
+                <key>11</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.parameter.source.process</string>
+                </dict>
+                <key>12</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.source.process</string>
+                </dict>
+                <key>13</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.source.process</string>
+                </dict>
+                <key>14</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.source.process</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string><![CDATA[(?x)
+(?<option>\[(?<optKey>[\w\-]*)=\~?(?<optval>[\w\-]*)\])
+|
+(?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
+|
+^(?<key>[\w\-]+)
+|
+(?<prop>(?<propKey>\.[\w\-]+)*)
+|
+\.?(?<plus>\+)?=?(?="?)
+|
+(?:(?<brackLeft>[<({\[]) | (?<brackRight>[\]})>]) )
+|
+(?<==)(?<quoteFirst>")
+|
+(?<string>[\w,\/=()\|:;\.\- "'\[\]\*&\$\?\\>+{}]+)
+|
+(?<quote>")
+            ]]></string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>#.+$</string>
+            <key>name</key>
+            <string>comment.in.line.source.process</string>
+        </dict>
+    </array>
+    <key>scopeName</key>
+    <string>source.process</string>
+    <key>uuid</key>
+    <string>54267807-d0bc-4f66-b353-e844c069393a</string>
+</dict>
+</plist>

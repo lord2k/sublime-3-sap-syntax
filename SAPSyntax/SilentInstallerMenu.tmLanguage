@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>fileTypes</key>
+    <array>
+        <string>menu</string>
+    </array>
+    <key>name</key>
+    <string>SilentInstaller Menu</string>
+    <key>patterns</key>
+    <array>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>string source</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string>\$\[(\w+)\]</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>keyword</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>string source</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string>(CRITICAL)=(.+)</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>keyword</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.other.attribute-name</string>
+                </dict>
+                <key>3</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable</string>
+                </dict>
+                <key>4</key>
+                <dict>
+                    <key>name</key>
+                    <string>string</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string><![CDATA[(?x)
+^\s*([CDPQ]+)\s*,\s*(?:(\w+/))?(\S+)?(?:,(.+))?$
+                ]]></string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>#.*$</string>
+            <key>name</key>
+            <string>comment.in.line.source.menu</string>
+        </dict>
+    </array>
+    <key>scopeName</key>
+    <string>source.menu</string>
+    <key>uuid</key>
+    <string>54267807-d0bc-4f66-b353-e844c069393a</string>
+</dict>
+</plist>
