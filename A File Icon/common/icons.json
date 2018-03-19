@@ -1198,20 +1198,14 @@
     "color": "blue",
     "syntaxes": [
       {
-        "name": "SAP Lama Conf",
-        "scope": "source.lama.conf"
-      },
-      {
-        "name": "SAP SilentInstaller Config",
-        "scope": "source.sapinst.config"
-      },
-      {
-        "name": "SAP SilentInstaller Menu",
-        "scope": "source.sapinst.menu"
-      },
-      {
-        "name": "SAP SilentInstaller Process",
-        "scope": "source.sapinst.process"
+        "name": "SAP",
+        "scope": "source.sapinst",
+        "extensions": [
+          ".config",
+          ".menu",
+          ".process",
+          ".conf"
+        ],
       }
     ]
   },
