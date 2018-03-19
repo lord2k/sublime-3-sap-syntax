@@ -6,16 +6,18 @@
     <array>
         <string>process</string>
         <string>config</string>
+        <string>param</string>
+        <string>properties</string>
     </array>
     <key>name</key>
-    <string>SilentInstaller Config | Process</string>
+    <string>SilentInstaller (Config|Param|Process|Properties)</string>
     <key>patterns</key>
     <array>
         <dict>
             <key>match</key>
             <string>^#.+</string>
             <key>name</key>
-            <string>comment.line.sapinst.process</string>
+            <string>comment.line.sapinst</string>
         </dict>
         <dict>
             <key>captures</key>
@@ -23,12 +25,12 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.control.import.sapinst.process</string>
+                    <string>keyword.control.import.sapinst</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>entity.name.function.sapinst.process</string>
+                    <string>entity.name.function.sapinst</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -40,12 +42,12 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.sapinst.process</string>
+                    <string>keyword.sapinst</string>
                 </dict>
                 <key>2</key>
                 <dict>
                     <key>name</key>
-                    <string>support.constant.sapinst.process</string>
+                    <string>support.constant.sapinst</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -61,7 +63,7 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.sapinst.process</string>
+                    <string>variable.parameter.sapinst</string>
                 </dict>
                 <key>2</key>
                 <dict>
@@ -71,62 +73,62 @@
                 <key>3</key>
                 <dict>
                     <key>name</key>
-                    <string>string.sapinst.process</string>
+                    <string>string.sapinst</string>
                 </dict>
                 <key>4</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.sapinst.process </string>
+                    <string>variable.sapinst </string>
                 </dict>
                 <key>5</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.sapinst.process markup.italic</string>
+                    <string>variable.sapinst markup.italic</string>
                 </dict>
                 <key>6</key>
                 <dict>
                     <key>name</key>
-                    <string>keyword.sapinst.process</string>
+                    <string>keyword.sapinst</string>
                 </dict>
                 <key>7</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.sapinst.process</string>
+                    <string>variable.sapinst</string>
                 </dict>
                 <key>8</key>
                 <dict>
                     <key>name</key>
-                    <string>variables.complete.sapinst.process</string>
+                    <string>variables.complete.sapinst</string>
                 </dict>
                 <key>9</key>
                 <dict>
                     <key>name</key>
-                    <string>support.type.sapinst.process markup.bold</string>
+                    <string>support.type.sapinst markup.bold</string>
                 </dict>
                 <key>10</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.sapinst.process</string>
+                    <string>variable.parameter.sapinst</string>
                 </dict>
                 <key>11</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.parameter.sapinst.process</string>
+                    <string>variable.parameter.sapinst</string>
                 </dict>
                 <key>12</key>
                 <dict>
                     <key>name</key>
-                    <string>string.sapinst.process</string>
+                    <string>string.sapinst markup.quote</string>
                 </dict>
                 <key>13</key>
                 <dict>
                     <key>name</key>
-                    <string>string.sapinst.process</string>
+                    <string>string.sapinst markup.quote</string>
                 </dict>
                 <key>14</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.sapinst.process</string>
+                    <string>string.sapinst</string>
                 </dict>
             </dict>
             <key>match</key>
@@ -139,26 +141,26 @@
 |
 (?<prop>(?<propKey>\.[\w\-]+)*)
 |
-\.?(?<plus>\+)?=?(?="?)
+\.?(?<plus>\+)?\s*=?\s*(?="?)
 |
 (?:(?<brackLeft>[<({\[]) | (?<brackRight>[\]})>]) )
 |
 (?<==)(?<quoteFirst>")
 |
-(?<string>[\w,\/=()\|:;\.\- "'\[\]\*&\$\?\\>+{}]+)
+(?<quoteLast>"(?=$))
 |
-(?<quote>")
+(?<propValue>[\w,\/=()\|:;\.\- "'\[\]\*&\$\?\\>+{}]+)
             ]]></string>
         </dict>
         <dict>
             <key>match</key>
             <string>#.+$</string>
             <key>name</key>
-            <string>comment.in.line.sapinst.process</string>
+            <string>comment.in.line.sapinst</string>
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.sapinst.process</string>
+    <string>source.sapinst</string>
     <key>uuid</key>
     <string>43b578be-a650-4a8f-bb17-238a431697e0</string>
 </dict>

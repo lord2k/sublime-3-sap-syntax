@@ -74,7 +74,7 @@
         </dict>
         <dict>
             <key>match</key>
-            <string>^\s*Description\s*:(\s*.+\s*)(#.+)$?</string>
+            <string>^\s*Description\s*:(\s*.+\s*)(#.+)?$?</string>
             <key>captures</key>
             <dict>
                 <key>1</key>
