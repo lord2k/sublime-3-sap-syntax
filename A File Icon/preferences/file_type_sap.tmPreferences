@@ -2,7 +2,7 @@
 <plist version="1.0">
   <dict>
     <key>scope</key>
-    <string>source.lama.conf source.sapinst.process source.sapinst.menu source.sapinst.config</string>
+    <string>source.sapinst</string>
     <key>settings</key>
     <dict>
       <key>icon</key>
