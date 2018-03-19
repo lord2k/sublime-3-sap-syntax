@@ -48,7 +48,7 @@
                 </dict>
             </dict>
             <key>match</key>
-            <string>\$\[\s*([\w=\-]+):?(-\w+)?((?:\#\w+)*)\s*\]</string>
+            <string>\$\[\s*([\w=\-]+):?(-\w+\s*)?((?:\#\w+)*)\s*\]</string>
             <key>name</key>
             <string>variables.complete.conf</string>
         </dict>
