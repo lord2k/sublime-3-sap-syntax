@@ -27,35 +27,36 @@ contexts:
         |
         (?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
         |
-        ^(?<key>[\w\-]+)
+        ^\s*(?<key>[\w\-]+)
         |
-        (?<prop>(?<propKey>\.[\w\-]+)*)
+        (?<prop>(?<propKey>\.[\w\-]+)*)\s*(?=[+=])
         |
-        \.?(?<plus>\+)?\s*=?\s*(?="?)
+        \.?(?<operator>(?<plus>\+)?\s*=)\s*(?="?)
         |
         (?:(?<brackLeft>[<({\[]) | (?<brackRight>[\]})>]) )
         |
         (?<==)(?<quoteFirst>")
         |
-        (?<quoteLast>"(?=$))
+        (?<quoteLast>")
         |
-        (?<propValue>[\w,\/=()\|:;\.\- "'\[\]\*&\$\?\\>+{}]+)
+        (?<propValue>[\w,\/=()\|:;\.\- '\[\]\*&\$\?\\>+{}]+)
 
       captures:
-        1: variable.parameter.sapinst
+        1: entity.name.struct variable.parameter.sapinst
         2: entity.other.attribute-name
-        3: string.sapinst
+        3: entity.name.enum string.unquoted
         4: variable.sapinst
         5: variable.sapinst markup.italic
-        6: keyword.sapinst
+        6: keyword.control.sapinst
         7: variable.sapinst
         8: variable.language.sapinst variables.complete
-        9: support.type.sapinst markup.bold
-        10: variable.parameter.sapinst
-        11: variable.parameter.sapinst
-        12: string.sapinst markup.quote
-        13: string.sapinst markup.quote
-        14: string.sapinst
+        9: keyword.operator.sapinst
+        10: keyword.operator.sapinst markup.bold
+        11: punctuation.section.brackets.begin variable.parameter.sapinst
+        12: punctuation.section.brackets.end   variable.parameter.sapinst
+        13: punctuation.definition.string.begin string.quoted.double
+        14: punctuation.definition.string.end   string.quoted.double
+        15: string.quoted.double
     - match: "###.*$"
       scope: comment.strong.sapinst markup.bold
     - match: "#.*$"
