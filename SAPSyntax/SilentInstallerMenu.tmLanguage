@@ -81,7 +81,7 @@
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.sapinst.menu</string>
+    <string>source.sapinst</string>
     <key>uuid</key>
     <string>b5146344-34a6-4697-9795-b9a92349aacb</string>
 </dict>
