@@ -1,0 +1,35 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: LamaConf
+file_extensions:
+  - conf
+scope: source.lama.conf
+contexts:
+  main:
+    - match: '(?<=[\s:])--?\w+'
+      scope: variable.parameter.conf
+    - match: \w+\s*(?==)
+      scope: variable.parameter.conf
+    - match: '\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#\w+)*)?\s*\]'
+      scope: variable.other.conf
+      captures:
+        1: variable.language.conf
+        2: variable.parameter.conf
+        3: markup.italic
+    - match: ^\s*#.*?\n
+      scope: comment.conf
+    - match: ^\s*Name\s*:\s*(.+)\s*$
+      scope: keyword
+      captures:
+        1: constant.character.escape markup.bold
+    - match: ^\s*Description\s*:(\s*.+\s*)(#.+)?$?
+      scope: keyword
+      captures:
+        1: string.conf
+        2: comment.conf
+    - match: ^(\s*\w+\s*:)\s*
+      captures:
+        1: keyword.conf
+    - match: "#.+$"
+      scope: comment.in.line.conf

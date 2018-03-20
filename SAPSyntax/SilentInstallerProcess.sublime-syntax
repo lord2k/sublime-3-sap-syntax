@@ -1,0 +1,62 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SilentInstaller (Config|Param|Process|Properties)
+file_extensions:
+  - process
+  - config
+  - param
+  - properties
+scope: source.sapinst
+contexts:
+  main:
+    - match: ^#.+
+      scope: comment.line.sapinst
+    - match: (include)(.+)$
+      captures:
+        1: keyword.control.import.sapinst
+        2: entity.name.function.sapinst
+    - match: |-
+        (?x)
+        (.+)\.(VERSION_CONFIG_INSTALLATION_TYPE.+)
+      scope: markup.bold
+      captures:
+        1: keyword.sapinst
+        2: support.constant.sapinst
+    - match: |-
+        (?x)
+        (?<option>\[(?<optKey>[\w\-]*)=\~?(?<optval>[\w\-]*)\])
+        |
+        (?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
+        |
+        ^(?<key>[\w\-]+)
+        |
+        (?<prop>(?<propKey>\.[\w\-]+)*)
+        |
+        \.?(?<plus>\+)?\s*=?\s*(?="?)
+        |
+        (?:(?<brackLeft>[<({\[]) | (?<brackRight>[\]})>]) )
+        |
+        (?<==)(?<quoteFirst>")
+        |
+        (?<quoteLast>"(?=$))
+        |
+        (?<propValue>[\w,\/=()\|:;\.\- "'\[\]\*&\$\?\\>+{}]+)
+
+      captures:
+        1: variable.parameter.sapinst
+        2: entity.other.attribute-name
+        3: string.sapinst
+        4: variable.sapinst
+        5: variable.sapinst markup.italic
+        6: keyword.sapinst
+        7: variable.sapinst
+        8: variable.language.sapinst variables.complete
+        9: support.type.sapinst markup.bold
+        10: variable.parameter.sapinst
+        11: variable.parameter.sapinst
+        12: string.sapinst markup.quote
+        13: string.sapinst markup.quote
+        14: string.sapinst
+    - match: "#.+$"
+      scope: comment.in.line.sapinst

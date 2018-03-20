@@ -1,0 +1,28 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SilentInstaller Menu
+file_extensions:
+  - menu
+scope: source.sapinst
+contexts:
+  main:
+    - match: '\$\[(\w+)\]'
+      captures:
+        1: string source
+    - match: (CRITICAL)=(.+)
+      captures:
+        1: keyword
+        2: string source
+    - match: |-
+        (?x)
+        ^\s*([CDPQ]+)\s*,?\s*(?:(\w+[/]|\w+__))?(\S+)?\s*(?:,([\w\s()\.\-]+))?\s*(\#.+)?$
+
+      captures:
+        1: keyword
+        2: entity.other.attribute-name
+        3: variable
+        4: string
+        5: comment
+    - match: "#.*$"
+      scope: comment.in.line.sapinst.menu
