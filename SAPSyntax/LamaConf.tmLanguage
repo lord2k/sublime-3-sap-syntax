@@ -24,7 +24,13 @@
         </dict>
         <dict>
             <key>match</key>
-            <string>(?&lt;=[\s:])-\w+</string>
+            <string>(?&lt;=[\s:])--?\w+</string>
+            <key>name</key>
+            <string>variable.parameter.conf</string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>\w+\s*(?==)</string>
             <key>name</key>
             <string>variable.parameter.conf</string>
         </dict>
@@ -34,7 +40,7 @@
                 <key>1</key>
                 <dict>
                     <key>name</key>
-                    <string>variable.others.conf</string>
+                    <string>variable.language.conf</string>
                 </dict>
                 <key>2</key>
                 <dict>
@@ -44,13 +50,13 @@
                 <key>3</key>
                 <dict>
                     <key>name</key>
-                    <string>string.conf</string>
+                    <string>markup.italic</string>
                 </dict>
             </dict>
             <key>match</key>
-            <string>\$\[\s*([\w=\-]+):?(-\w+\s*)?((?:\#\w+)*)\s*\]</string>
+            <string>\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#\w+)*)\s*\]</string>
             <key>name</key>
-            <string>variables.complete.conf</string>
+            <string>variable.other.conf</string>
         </dict>
         <dict>
             <key>match</key>
