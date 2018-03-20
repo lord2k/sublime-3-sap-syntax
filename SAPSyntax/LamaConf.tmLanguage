@@ -48,12 +48,6 @@
         </dict>
         <dict>
             <key>match</key>
-            <string>^\s*#.*?\n</string>
-            <key>name</key>
-            <string>comment.conf</string>
-        </dict>
-        <dict>
-            <key>match</key>
             <string>^\s*Name\s*:\s*(.+)\s*$</string>
             <key>captures</key>
             <dict>
@@ -99,7 +93,13 @@
         </dict>
         <dict>
             <key>match</key>
-            <string>#.+$</string>
+            <string>###.*$</string>
+            <key>name</key>
+            <string>comment.strong.conf markup.bold</string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>#.*$</string>
             <key>name</key>
             <string>comment.in.line.conf</string>
         </dict>

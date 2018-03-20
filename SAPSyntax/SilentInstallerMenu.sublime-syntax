@@ -9,20 +9,21 @@ contexts:
   main:
     - match: '\$\[(\w+)\]'
       captures:
-        1: string source
+        1: string.sapinst.menu
     - match: (CRITICAL)=(.+)
       captures:
-        1: keyword
-        2: string source
+        1: keyword.sapinst.menu
+        2: string.sapinst.menu
     - match: |-
         (?x)
-        ^\s*([CDPQ]+)\s*,?\s*(?:(\w+[/]|\w+__))?(\S+)?\s*(?:,([\w\s()\.\-]+))?\s*(\#.+)?$
-
+        ^\s*([CDPQ]+)\s*,?\s*(?:(\w+[/]|\w+__))?(\S+)?\s*(?:,([\w\s()\.\-]+))?\s*(\#.*)?$
       captures:
-        1: keyword
-        2: entity.other.attribute-name
-        3: variable
-        4: string
-        5: comment
-    - match: "#.*$"
-      scope: comment.in.line.sapinst.menu
+        1: keyword.sapinst.menu
+        2: entity.other.attribute-name.sapinst.menu
+        3: variable.sapinst.menu
+        4: string.sapinst.menu
+        5: comment.sapinst.menu
+    - match: "\\s*###.*$"
+      scope: comment.strong.sapinst.menu markup.bold
+    - match: '#.*$'
+      scope: comment.sapinst.menu markup.italic

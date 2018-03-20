@@ -10,8 +10,6 @@ file_extensions:
 scope: source.sapinst
 contexts:
   main:
-    - match: ^#.+
-      scope: comment.line.sapinst
     - match: (include)(.+)$
       captures:
         1: keyword.control.import.sapinst
@@ -58,5 +56,7 @@ contexts:
         12: string.sapinst markup.quote
         13: string.sapinst markup.quote
         14: string.sapinst
-    - match: "#.+$"
-      scope: comment.in.line.sapinst
+    - match: "###.*$"
+      scope: comment.strong.sapinst markup.bold
+    - match: "#.*$"
+      scope: comment.sapinst markup.italic

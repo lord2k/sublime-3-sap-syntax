@@ -75,6 +75,12 @@
         </dict>
         <dict>
             <key>match</key>
+            <string>###.*$</string>
+            <key>name</key>
+            <string>comment.strong.sapinst.menu markup.bold</string>
+        </dict>
+        <dict>
+            <key>match</key>
             <string>#.*$</string>
             <key>name</key>
             <string>comment.in.line.sapinst.menu</string>

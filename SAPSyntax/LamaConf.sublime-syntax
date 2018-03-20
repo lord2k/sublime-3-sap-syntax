@@ -8,28 +8,28 @@ scope: source.lama.conf
 contexts:
   main:
     - match: '(?<=[\s:])--?\w+'
-      scope: variable.parameter.conf
+      scope: variable.parameter.lama.conf
     - match: \w+\s*(?==)
-      scope: variable.parameter.conf
+      scope: variable.parameter.lama.conf
     - match: '\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#\w+)*)?\s*\]'
-      scope: variable.other.conf
+      scope: variable.other.lama.conf
       captures:
-        1: variable.language.conf
-        2: variable.parameter.conf
+        1: variable.language.lama.conf
+        2: variable.parameter.lama.conf
         3: markup.italic
-    - match: ^\s*#.*?\n
-      scope: comment.conf
     - match: ^\s*Name\s*:\s*(.+)\s*$
-      scope: keyword
+      scope: keyword.lama.conf
       captures:
         1: constant.character.escape markup.bold
     - match: ^\s*Description\s*:(\s*.+\s*)(#.+)?$?
-      scope: keyword
+      scope: keyword.lama.conf
       captures:
-        1: string.conf
-        2: comment.conf
+        1: string.lama.conf
+        2: comment.lama.conf
     - match: ^(\s*\w+\s*:)\s*
       captures:
-        1: keyword.conf
-    - match: "#.+$"
-      scope: comment.in.line.conf
+        1: keyword.lama.conf
+    - match: "\\s*###.*$"
+      scope: comment.strong.lama.conf markup.bold
+    - match: '#.*$'
+      scope: comment.lama.conf markup.italic

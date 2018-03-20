@@ -154,6 +154,12 @@
         </dict>
         <dict>
             <key>match</key>
+            <string>###.+$</string>
+            <key>name</key>
+            <string>comment.strong.sapinst markup.bold</string>
+        </dict>
+        <dict>
+            <key>match</key>
             <string>#.+$</string>
             <key>name</key>
             <string>comment.in.line.sapinst</string>
