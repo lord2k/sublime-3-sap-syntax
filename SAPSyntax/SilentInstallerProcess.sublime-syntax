@@ -23,7 +23,9 @@ contexts:
         2: support.constant.sapinst
     - match: |-
         (?x)
-        (?<option>\[(?<optKey>[\w\-]*)=\~?(?<optval>[\w\-]*)\])
+        (?<option>\[(?<optKey>[\w\-]*)=\~?(?<optVal>[\w\-]*)\])
+        |
+        (?<phNumber>{[\d\.\+\-,]+})
         |
         (?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
         |
@@ -39,24 +41,25 @@ contexts:
         |
         (?<quoteLast>")
         |
-        (?<propValue>[\w,\/=()\|:;\.\- '\[\]\*&\$\?\\>+{}]+)
+        (?<propVal>[\w,\/=()\|:;\.\- '\[\]\*&\$\?\\>+{}]+)
 
       captures:
-        1: entity.name.struct variable.parameter.sapinst
-        2: entity.other.attribute-name
-        3: entity.name.enum string.unquoted
-        4: variable.sapinst
-        5: variable.sapinst markup.italic
-        6: keyword.control.sapinst
-        7: variable.sapinst
-        8: variable.language.sapinst variables.complete
-        9: keyword.operator.sapinst
-        10: keyword.operator.sapinst markup.bold
-        11: punctuation.section.brackets.begin variable.parameter.sapinst
-        12: punctuation.section.brackets.end   variable.parameter.sapinst
-        13: punctuation.definition.string.begin string.quoted.double
-        14: punctuation.definition.string.end   string.quoted.double
-        15: string.quoted.double
+        1: entity.name.struct variable.parameter.sapinst #option
+        2: entity.other.attribute-name #optKey
+        3: entity.name.enum string.unquoted #optVal
+        4: entity.other.attribute-name #phNumber
+        5: variable.sapinst #placeholder
+        6: variable.sapinst markup.italic #placeholder2
+        7: keyword.control.sapinst #key
+        8: variable.sapinst #prop
+        9: variable.language.sapinst variables.complete #propKey
+        10: keyword.operator.sapinst #operator
+        11: keyword.operator.sapinst markup.bold #plus
+        12: punctuation.section.brackets.begin variable.parameter.sapinst #brackLeft
+        13: punctuation.section.brackets.end   variable.parameter.sapinst #brackRight
+        14: punctuation.definition.string.begin string.quoted.double #quoteFirst
+        15: punctuation.definition.string.end   string.quoted.double #quoteLast
+        16: string.quoted.double #propVal
     - match: "###.*$"
       scope: comment.strong.sapinst markup.bold
     - match: "#.*$"

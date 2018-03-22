@@ -11,7 +11,7 @@ contexts:
       scope: variable.parameter.lama.conf
     - match: \w+\s*(?==)
       scope: variable.parameter.lama.conf
-    - match: '\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#\w+)*)?\s*\]'
+    - match: '\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#[\w(,)]+)*)?\s*\]'
       scope: variable.other.lama.conf
       captures:
         1: variable.language.lama.conf
