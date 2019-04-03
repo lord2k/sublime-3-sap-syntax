@@ -14,18 +14,17 @@ contexts:
       captures:
         1: keyword.control.import.sapinst
         2: entity.name.function.sapinst
+    - match: \[\w+\]
+      scope: punctuation.section.begin entity.name.label markup.bold
+    - match: '\['
+      push: condition
     - match: |-
         (?x)
-        (.+)\.(VERSION_CONFIG_INSTALLATION_TYPE.+)
-      scope: markup.bold
-      captures:
-        1: keyword.sapinst
-        2: support.constant.sapinst
-    - match: |-
-        (?x)
-        (?<option>\[(?<optKey>[\w\-]*)=\~?(?<optVal>[\w\-]*)\])
-        |
+        #(?<option>\[(?<optKey>[\w\-]*)=\~?(?<optVal>[\w\-]*)\])
+        #|
         (?<phNumber>{[\d\.\+\-,]+})
+        |
+        (?<=<)(?<plpl>placeholder_)(?<plplValue>[\w\-]+)(?=>)
         |
         (?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
         |
@@ -36,31 +35,85 @@ contexts:
         \.?(?<operator>(?<plus>\+)?\s*=)\s*(?="?)
         |
         (?:(?<brackLeft>[<({\[]) | (?<brackRight>[\]})>]) )
+        #|
+        #(?<==)(?<quoteFirst>")
+        #|
+        #(?<quoteLast>")
         |
-        (?<==)(?<quoteFirst>")
-        |
-        (?<quoteLast>")
-        |
-        (?<propVal>[\w,\/=()\|:;\.\- '\[\]\*&\$\?\\>+{}]+)
-
+        (?<propVal>[\w,\/=()\|:;\.\- '\[\]\*&\$\?\\>+{}!^]+)
       captures:
-        1: entity.name.struct variable.parameter.sapinst #option
-        2: entity.other.attribute-name #optKey
-        3: entity.name.enum string.unquoted #optVal
-        4: entity.other.attribute-name #phNumber
-        5: variable.sapinst #placeholder
-        6: variable.sapinst markup.italic #placeholder2
-        7: keyword.control.sapinst #key
-        8: variable.sapinst #prop
-        9: variable.language.sapinst variables.complete #propKey
-        10: keyword.operator.sapinst #operator
-        11: keyword.operator.sapinst markup.bold #plus
-        12: punctuation.section.brackets.begin variable.parameter.sapinst #brackLeft
-        13: punctuation.section.brackets.end   variable.parameter.sapinst #brackRight
-        14: punctuation.definition.string.begin string.quoted.double #quoteFirst
-        15: punctuation.definition.string.end   string.quoted.double #quoteLast
-        16: string.quoted.double #propVal
+        #1: entity.name.struct variable.parameter.sapinst #option
+        #2: entity.other.attribute-name #optKey
+        #3: entity.name.enum string.unquoted #optVal
+        1: entity.other.attribute-name #phNumber
+        2: entity.other.attribute-name markup.italic #plpl
+        3: variable.sapinst #plplValue
+        4: variable.sapinst #placeholder
+        5: variable.sapinst markup.italic #placeholder2
+        6: keyword.control.sapinst #key
+        7: variable.sapinst #prop
+        8: variable.language.sapinst variable.alternate #propKey
+        9: keyword.operator.sapinst #operator
+        10: keyword.operator.sapinst markup.bold #plus
+        11: punctuation.section.brackets.begin variable.parameter.sapinst #brackLeft
+        12: punctuation.section.brackets.end   variable.parameter.sapinst #brackRight
+        #16: punctuation.definition.string.begin #string.quoted.double #quoteFirst
+        #17: punctuation.definition.string.end   #string.quoted.double #quoteLast
+        13: string.quoted.double #propVal
     - match: "###.*$"
       scope: comment.strong.sapinst markup.bold
     - match: "#.*$"
       scope: comment.sapinst markup.italic
+
+    - match: '"(?=.+")'
+      push: stringDouble
+    - match: \'(?=.+\')
+      push: stringSingle
+
+  stringDouble:
+    - meta_scope: string.quoted.double.sapinst
+    - match: \\[ntr"]
+      scope: constant.character.escape.sapinst
+    - match: |-
+        (?x)
+        (?<=<)(?<plpl>placeholder_)(?<plplValue>[\w\-]+)(?=>)
+        |
+        (?:(?<=<)(?<placeholder>[\w\-]*)(?=>) | (?<placeholder2>(?<=<)\g<placeholder>* | \g<placeholder>*(?=>)))
+        |
+        ^\s*(?<key>[\w\-]+)
+        |
+        (?<prop>(?<propKey>\.[\w\-]+)*)\s*(?=[+=])
+        |
+        \.?(?<operator>(?<plus>\+)?\s*=)\s*(?="?)
+        |
+        (?:(?<brackLeft>[<{\[]) | (?<brackRight>[\]}>]) )
+      captures:
+        1: entity.other.attribute-name markup.italic #plpl
+        2: variable.sapinst #plplValue
+        3: variable.sapinst #placeholder
+        4: variable.sapinst markup.italic #placeholder2
+        5: keyword.control.sapinst #key
+        6: variable.sapinst #prop
+        7: variable.language.sapinst variable.alternate #propKey
+        8: keyword.operator.sapinst #operator
+        9: keyword.operator.sapinst markup.bold #plus
+        10: punctuation.section.brackets.begin variable.parameter.sapinst #brackLeft
+        11: punctuation.section.brackets.end   variable.parameter.sapinst #brackRight
+    - match: \"
+      pop: true
+
+  stringSingle:
+    - meta_scope: string.quoted.single.sapinst
+    - match: \'
+      pop: true
+
+  condition:
+    - meta_scope: entity.name.struct variable.parameter.sapinst #option
+    - match: '\['
+      push: condition
+    - match: '(?<optKey>[\w\-]*)\s*[=<>!~]{1,2}\~?\s*(?<optVal>[\w\-]*)'
+      captures:
+        1: entity.other.attribute-name #optKey
+        2: entity.name.enum string.unquoted #optVal
+    - match: '\]'
+      pop: true

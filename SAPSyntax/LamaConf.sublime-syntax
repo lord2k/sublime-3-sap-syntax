@@ -7,16 +7,23 @@ file_extensions:
 scope: source.lama.conf
 contexts:
   main:
-    - match: '(?<=[\s:])--?\w+'
-      scope: variable.parameter.lama.conf
-    - match: \w+\s*(?==)
-      scope: variable.parameter.lama.conf
-    - match: '\$\[\s*([\w=\-]+):?(-*[\w\-]+\s*=?)?((?:\#[\w(,)]+)*)?\s*\]'
-      scope: variable.other.lama.conf
+    - match: '^\s*(Command:)'
+      push: command
       captures:
-        1: variable.language.lama.conf
-        2: variable.parameter.lama.conf
-        3: markup.italic
+        1: keyword.lama.conf
+
+    - match: \$\[
+      push: variable
+    #- match: '(?<=[\s:])--?\w+'
+    #  scope: variable.parameter.lama.conf
+    #- match: \w+\s*(?==)
+    #  scope: variable.parameter.lama.conf
+    #- match: '\$\[\s*([\w=\-\.]+):?(-*[\w\-]+\s*=?)?((?:\#[\w(,)]+)*)?\s*\]'
+    #  scope: variable.other.lama.conf
+    #  captures:
+    #    1: variable.language.lama.conf
+    #    2: variable.parameter.lama.conf
+    #    3: markup.italic
     - match: ^\s*Name\s*:\s*(.+)\s*$
       scope: keyword.lama.conf
       captures:
@@ -26,10 +33,67 @@ contexts:
       captures:
         1: string.lama.conf
         2: comment.lama.conf
+
     - match: ^(\s*\w+\s*:)\s*
       captures:
         1: keyword.lama.conf
+
     - match: "\\s*###.*$"
       scope: comment.strong.lama.conf markup.bold
     - match: '#.*$'
       scope: comment.lama.conf markup.italic
+
+    - match: '"'
+      push: stringDouble
+    - match: \'
+      push: stringSingle
+
+  command:
+    - meta_scope: command.lama.conf
+    - match: \b*((?:(?:/(?:usr/)?bin/)?bash|sh|perl)|cp|mv|sed|grep|test)\b
+      scope: constant.character.escape.lama.conf
+    - match: \b(rm)\b
+      scope: invalid.keyword.lama.conf markup.bold
+    - match: '\s*((?:--?[\w\-\.]+)(?:\s*|=)?|([\w\-\.]+\s*)(?==))'
+      captures:
+        1: variable.parameter.lama.conf
+    - match: \$\[
+      push: variable
+    - match: '"(?=.+")'
+      push: stringDouble
+    - match: \'(?=.+\')
+      push: stringSingle
+    - match: '\n+'
+      pop: true
+
+  variable:
+    - meta_scope: variable.lama.conf
+    - match: '\s(--?[\w\-\.]+\s*)'
+      scope: variable.parameter.lama.conf
+    - match: '\s*([\w\-\.]+)\s*'
+      captures:
+        1: variable.language.lama.conf variable.alternate.lama.conf
+    - match: ':\s*(--?[\w\-\.]+)\s*'
+      captures:
+        1: variable.parameter.lama.conf
+    - match: '(#[\w\-]+)'
+      captures:
+        1: string.lama.conf markup.italic
+    - match: '"'
+      push: stringDouble
+    - match: \'
+      push: stringSingle
+    - match: \]
+      pop: true
+
+  stringDouble:
+    - meta_scope: string.quoted.double.lama.conf
+    - match: \\.
+      scope: constant.character.escape.lama.conf
+    - match: '"'
+      pop: true
+
+  stringSingle:
+    - meta_scope: string.quoted.single.lama.conf
+    - match: \'
+      pop: true

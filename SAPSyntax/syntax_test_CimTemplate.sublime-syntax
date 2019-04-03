@@ -1,0 +1,33 @@
+// SYNTAX TEST "CimTemplate.sublime-syntax"
+# foo
+// <- source.cim.template comment
+
+### foo
+// <- source.cim.template comment.strong
+
+object: {
+// <- source.cim.template keyword
+  object2: {
+//   ^ source.cim.template keyword
+  }
+}
+
+object: query {
+// <- source.cim.template keyword
+//       ^ source.cim.template entity.name.function
+  label: $[vari_able]
+// ^ source.cim.template keyword
+//          ^ source.cim.template variable.alternate
+  otherlabel: @[function(definition=value.type).othervalue:#valuefunc()]
+//            ^^ source.cim.template variable variable.parameter
+//              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.cim.template variable
+//                                                         ^^^^^^^^^^^^ source.cim.template entity.name.function
+//                                                                     ^ source.cim.template variable variable.parameter
+
+otherlabel: @[function(definition=value.type).@[function(definition=value.type).othervalue:#valuefunc()]]
+//                                            ^^ source.cim.template variable variable.parameter markup.italic
+//                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.cim.template variable markup.italic
+//                                                                                         ^^^^^^^^^^^^ source.cim.template markup.italic entity.name.function
+//                                                                                                     ^ source.cim.template variable variable.parameter markup.italic
+
+}

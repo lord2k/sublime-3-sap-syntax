@@ -1,0 +1,174 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SilentInstallerLog
+file_extensions:
+  - log
+scope: source.sapinst.log
+variables:
+  wordExt: '[\w \-();\.:\\\[*!"{}]+'
+  dateIso: '\d{4}[-\/.]?(?:\d{2}[-\/.]?){2}\s*(?:\d{2}:?){3}'
+
+contexts:
+  main:
+    - meta_scope: main
+    - match: '^(\d{4}-\d{2}-\d{2}\s(?:\d{2}\:?){3})'
+      push: logline
+      captures:
+        1: date keyword.sapinst.log
+
+    - match: '[({\[]\s*(?!\w)'
+      push: dumper
+
+    - match: ^{{dateIso}}
+      captures:
+        1: keyword.sapinst.log
+
+  url:
+    - meta_scope: url string markup.italic
+    - match: '(http[s]?)(://)(\w+@)?([\w \-.]+)(:\d{1,5})?([/?](?:{{wordExt}}|[@/])+)?'
+      captures:
+        1: protocol string
+        2: delim string
+        3: user string
+        4: domain string
+        5: port string
+        6: path string
+
+  logline:
+    - meta_scope: logline
+    - match: '(\d{1,3}\.){3}\d{1,3}(?:\/\d{1,3})?'
+      scope: string ip
+
+    - match: '\{(?!")'
+      push: dumper
+    - include: url
+      captures:
+        1: string markup.italic url
+    - match: '(/[\w/.\-]+)'
+      captures:
+        1: string
+
+    - include: ProcessDefinitions
+
+# CALLER line
+    - match: '(?x)
+        (?:\[(?:(debug|warn|info|result)|(error|ERROR))\])
+        \s*\[(\w+)\]\[(\w+)\]
+        \[(CALLER)\]\[(\w+::)(\w*)\s*\((.+\/)(\w+\.p[lm]):(.+)\)\]?'
+      captures:
+        1: constant.character.escape.sapinst.log
+        2: constant.character.escape.sapinst.log invalid.keyword.sapinst.log
+        3: variable.sapinst.log
+        4: variable.sapinst.log
+        5: variable.parameter.sapinst.log markup.bold.sapinst.log
+        6: entity.name.class.sapinst.log markup.bold.sapinst.log
+        7: entity.name.function.sapinst.log
+        8: variable.sapinst.log
+        9: entity.name.class.sapinst.log
+        10: variable.alternate.sapinst.log
+# Normal line
+    - match: '(?x)
+        (?:\[(?:(debug|warn|info|result)|(error|ERROR))\])
+        \s*\[([\w:]+)\]\s*\[([\w:]+)\](?:\s*\[([\w:]+)\]:?)?(?:\s*\[([\w:]+)\]:?)?(?:\s*\[([\w:]+)\]:?)?'
+      captures:
+        1: log.severity constant.character.escape.sapinst.log
+        2: constant.character.escape.sapinst.log invalid.keyword.sapinst.log
+        3: variable.sapinst.log
+        4: variable.sapinst.log
+        5: log.module variable.parameter.sapinst.log markup.bold.sapinst.log
+        6: log.method variable.parameter.sapinst.log markup.bold.sapinst.log
+        7: variable.parameter.sapinst.log markup.bold.sapinst.log
+        8: entity.name.class.sapinst.log
+        9: variable.alternate.sapinst.log
+
+    - match: Condition\s\[
+      push: Condition
+
+    - match: 'error|ERROR|Error'
+      scope: invalid.keyword.sapinst.log
+    - match: '\n'
+      pop: true
+
+  dumper:
+    - meta_scope: dumper
+    - match: '{{dateIso}}'
+      set: logline
+    - match: '[''"]({{wordExt}}/?)+[''"][,\n]'
+      scope: value string
+    - match: '[''"]'
+      push: key
+    - match: '((=>|=|:)\s*)?[({\[]'
+      push: dumper
+    - match: (=>|=|:)\s*(['"]|{{wordExt}}),?
+      push: value
+    - match: '[)}\]],?'
+      pop: true
+
+  key:
+    - meta_scope: key
+    - include: ProcessDefinitions
+    - match: '{{wordExt}}'
+      scope: variable.sapinst.log
+    - match: '[''"]'
+      pop: true
+
+  value:
+    - meta_scope: value
+    - include: url
+    - include: ProcessDefinitions
+    - match: (<)
+      scope: variable.parameter.sapinst.log
+      push: placeholder
+    - match: ({{wordExt}}|@)
+      captures:
+        1: string.quoted.single.sapinst.log
+        2: comment.sapinst.log
+    - match: ('|"),?
+      pop: true
+    - match: \n
+      pop: true
+
+  placeholder:
+    - meta_scope: placeholder
+    - match: ({{wordExt}})?(<)
+      captures:
+        1: variable.sapinst.log markup.italic
+        2: variable.parameter.sapinst.log
+      push: placeholder
+    - match: ({{wordExt}})?(>)
+      captures:
+        1: variable.sapinst.log markup.italic
+        2: variable.parameter.sapinst.log
+      pop: true
+
+  stringDouble:
+    - meta_scope: string.quoted.double.sapinst.log
+    - match: \\.
+      scope: constant.character.escape.sapinst.log
+    - match: '"'
+      pop: true
+
+  stringSingle:
+    - meta_scope: string.quoted.single.sapinst.log
+    - match: \'
+      pop: true
+
+  ProcessDefinitions:
+    - meta_scope: ProcessDefinitions
+    - match: '(\w+\/)((?:BOBJ|COMMON)\/ProcessDefinitions\/)?([\w\-]+(?:\.process))'
+      captures:
+        1: entity.other.attribute-name.sapinst.menu
+        2: variable.sapinst.menu
+        3: variable.alternate.sapinst.menu
+
+  Condition:
+    - meta_scope: Condition entity.name.struct variable.parameter.sapinst #option
+    - match: '\['
+      push: Condition
+    - match: '([\w\-]*)\s*=\~?\s*([\w\-\|]*)'
+      captures:
+        1: entity.other.attribute-name #optKey
+        2: entity.name.enum string.unquoted #optVal
+    - match: '\]'
+      pop: true
